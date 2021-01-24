@@ -1,0 +1,35 @@
+body {
+  background-color: black;
+}
+
+.App {
+  margin-top: 5em;
+  background-color: white;
+  width: 700px;
+  height: 700px;
+  border-radius: 50px;
+}
+
+h3{
+  color: rgb(223, 134, 134);
+  font-size: 100px ;
+  font-family: 'Jaldi', sans-serif; 
+  font-family: 'Thasadith', sans-serif; 
+  text-align: center;
+}
+
+#task{
+  width: 500px;
+}
+
+input{
+  width: 490px;
+  border-color: rgb(223, 212, 212) !important;
+}
+
+ul{
+  padding-left: 3.2em;
+}
+
+
+
