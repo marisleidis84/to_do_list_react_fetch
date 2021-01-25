@@ -1,3 +1,4 @@
+import { data } from 'jquery';
 import React, { useState } from 'react';
 import './App.css';
 
@@ -33,64 +34,64 @@ const TodoList = () => {
             document.getElementById("prueba").value = '';
         }
     }
-    
-     //Aqui se actualizan los datos del usuario
-        const hacerPUT = () => {
-            let data = [];
-                for (let i = 0; i < task.length; i++) {
-                    data[i] = 
-                        {
-                            "label": task[i],
-                            "done": false
-                        };
-                }
-               console.log(task)
-               console.log('fgdfgfd')
-            console.log(data)
-            fetch(`https://assets.breatheco.de/apis/fake/todos/user/Marisleidis84`, {
-                method: 'PUT',
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }
 
-            )
-                .then(resp => {
-                    resp.json()
-                })
-                .then(data => {
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+    //Aqui se actualizan los datos del usuario
+    const hacerPUT = () => {
+        let data = [];
+        for (let i = 0; i < task.length; i++) {
+            data[i] =
+            {
+                "label": task[i],
+                "done": false
+            };
         }
-
-    // Aqui se elimina el usuario
-    const trash = y => {
-        fetch(`https://assets.breatheco.de/apis/fake/todos/user/${task[y]}`, {
-            method: "DELETE",
+        fetch(`https://assets.breatheco.de/apis/fake/todos/user/Marisleidis84`, {
+            method: 'PUT',
+            body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
             }
-        })
+        }
+
+        )
             .then(resp => {
-                return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+                resp.json()
             })
             .then(data => {
-                //here is were your code should start after the fetch finishes
-                console.log(data); //this will print on the console the exact object received from the server
-                const newTasks = [...task];
-                newTasks.splice(y, 1);
-                setTask(newTasks);
             })
             .catch(error => {
-                //error handling
                 console.log(error);
             });
     }
 
-
+    // Aqui se elimina una tarea
+    const trash = y => {
+        const newTasks = [...task];
+        newTasks.splice(y, 1);
+        setTask(task = newTasks);
+        console.log(newTasks)
+        console.log(task)
+        hacerPUT()
+    }
+    //Aqui se elimina el sario
+ /*  fetch(`https://assets.breatheco.de/apis/fake/todos/user/${task[y]}`, {
+             method: "DELETE",
+             headers: {
+                 "Content-Type": "application/json"
+             }
+         })
+             .then(resp => {
+                 return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+             })
+             .then(data => {
+                 //here is were your code should start after the fetch finishes
+                 console.log(data); //this will print on the console the exact object received from the serve
+             })
+             .catch(error => {
+                 //error handling
+                 console.log(error);
+             });
+          */
 
 
     return (
@@ -121,7 +122,7 @@ const TodoList = () => {
                         </ul>
                     </div>
                     <div className='container d-flex justify-content-center'>
-                    <button className='justify-content-center' type='button' onClick={hacerPUT} >Actalizar Tareas </button>
+                        <button className='justify-content-center' type='button' onClick={hacerPUT} >Actalizar Tareas </button>
                     </div>
                 </div>
             </div>
