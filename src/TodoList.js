@@ -1,31 +1,9 @@
-import { data } from 'jquery';
 import React, { useState } from 'react';
 import './App.css';
 
 const TodoList = () => {
     let [task, setTask] = useState([]);
     let [inputValor, setinputValor] = useState('');
-
-
-    //Aqui se agrega un nevo suario
-    /* fetch(`https://assets.breatheco.de/apis/fake/todos/user/Marisleidis84`, {
-        method: 'POST',
-        body: JSON.stringify([]),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(resp => {
-            console.log(resp);
-            return resp.json();
-        })
-        .then(data => {
-            console.log(data)
-        })
-        .catch(error => {
-            console.log(error);
-        }); */
-
 
     //Aqui se añade las tareas al arraeglo task
     const addTask = () => {
@@ -51,9 +29,7 @@ const TodoList = () => {
             headers: {
                 "Content-Type": "application/json"
             }
-        }
-
-        )
+        })
             .then(resp => {
                 resp.json()
             })
@@ -74,25 +50,26 @@ const TodoList = () => {
         hacerPUT()
     }
     //Aqui se elimina el sario
- /*  fetch(`https://assets.breatheco.de/apis/fake/todos/user/${task[y]}`, {
-             method: "DELETE",
-             headers: {
-                 "Content-Type": "application/json"
-             }
-         })
-             .then(resp => {
-                 return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
-             })
-             .then(data => {
-                 //here is were your code should start after the fetch finishes
-                 console.log(data); //this will print on the console the exact object received from the serve
-             })
-             .catch(error => {
-                 //error handling
-                 console.log(error);
-             });
-          */
+    const eliminarUsuario = () => {
 
+        fetch(`https://assets.breatheco.de/apis/fake/todos/user/Marisleidis84`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(resp => {
+                return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+            })
+            .then(data => {
+                //here is were your code should start after the fetch finishes
+                console.log(data); //this will print on the console the exact object received from the serve
+            })
+            .catch(error => {
+                //error handling
+                console.log(error);
+            });
+    }
 
     return (
         <>
@@ -123,6 +100,7 @@ const TodoList = () => {
                     </div>
                     <div className='container d-flex justify-content-center'>
                         <button className='justify-content-center' type='button' onClick={hacerPUT} >Actalizar Tareas </button>
+                        <button className='justify-content-center' type='button' onClick={eliminarUsuario} >Eliminar Usario </button>
                     </div>
                 </div>
             </div>
